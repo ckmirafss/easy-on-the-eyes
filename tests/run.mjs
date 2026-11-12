@@ -118,6 +118,32 @@ check("only spec frontmatter keys are used", keys.every((k) => allowed.has(k)), 
 const body = md.slice(fm ? fm[0].length : 0);
 check("SKILL.md body is under 500 lines", body.split("\n").length < 500, `${body.split("\n").length}`);
 
+// --- craft checks in the static audit ---
+check("bad page: craft-palette note for gradient text", badJson.findings.some((f) => f.rule === "craft-palette" && f.match.includes("background-clip")));
+check("bad page: craft-palette note for a stock purple gradient", badJson.findings.some((f) => f.rule === "craft-palette" && f.match.includes("from-indigo")));
+
+// --- browser inspector (runs only where Playwright is installed) ---
+const inspector = join(skillDir, "scripts", "inspect.mjs");
+const insp = (...args) => spawnSync("node", [inspector, ...args], { encoding: "utf8", timeout: 120000 });
+check("inspect with no arguments exits 2", insp().status === 2);
+check("inspect on a missing file exits 2", insp("does-not-exist.html").status === 2);
+const badRun = insp(join(root, "tests/fixtures/bad/index.html"), "--json");
+if (badRun.status === 2 && /needs Playwright/.test(badRun.stderr)) {
+  console.log("skip inspector page tests (Playwright is not installed)");
+} else {
+  const b = JSON.parse(badRun.stdout);
+  const rules = new Set(b.findings.map((f) => f.rule));
+  check("inspect: bad page exits 1", badRun.status === 1);
+  for (const id of ["type-rem-zoom", "motion-autoplay", "contrast-pure-extremes", "type-body-size", "type-leading", "type-weight", "theme-both-schemes"])
+    check(`inspect: bad page reports ${id}`, rules.has(id));
+  check("inspect: body text measured at 13px", b.design.typography.bodySizePx === 13);
+  check("inspect: main pair measured at 21:1", b.design.color.textPairs[0].ratio === 21);
+  check("inspect: rule IDs all appear in the SKILL.md table", [...rules].every((id) => tableIds.has(id)), [...rules].filter((id) => !tableIds.has(id)).join(", "));
+  const g = JSON.parse(insp(join(root, "tests/fixtures/good/index.html"), "--json").stdout);
+  check("inspect: good page has no errors", g.summary.errors === 0, JSON.stringify(g.findings.filter((f) => f.severity === "error")));
+  check("inspect: good page has a dark scheme", g.design.color.darkSchemeBackground !== null);
+}
+
 // --- every file SKILL.md points to exists ---
 const refs = [...md.matchAll(/`((?:references|scripts|assets)\/[\w.-]+)`/g)].map((m) => m[1]);
 const present = new Set(["references", "scripts", "assets"].flatMap((d) => readdirSync(join(skillDir, d)).map((f) => `${d}/${f}`)));

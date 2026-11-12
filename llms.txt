@@ -1,0 +1,28 @@
+# Easy on the Eyes
+
+> A free, MIT-licensed agent skill by Blackbyrds Digital that makes websites comfortable to look at and keeps them from looking AI-generated. It gives coding agents 32 evidence-graded visual-comfort and craft rules, a static source audit, and a browser inspector that measures rendered pages and studies reference sites.
+
+Install: `npx skills add ckmirafss/easy-on-the-eyes`
+
+Works with Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot and any agent that reads the Agent Skills format.
+
+## Key facts
+
+- Every rule is graded as research, standard (WCAG 2.2), convention or inference.
+- Body text: 16px minimum, 18 to 20px for long reading.
+- Contrast: 4.5:1 minimum for text, 8.5:1 or more for secondary text on dark surfaces.
+- Dark mode does not reduce eye strain in controlled studies. Ship light and dark and follow the system setting.
+- Blue-light filtering makes little or no difference to eye strain (Cochrane review, 2023, 17 trials).
+- The skill never claims to prevent eye strain. It removes avoidable visual demand.
+
+## Files
+
+- [README](https://github.com/ckmirafss/easy-on-the-eyes/blob/main/README.md): overview, commands, comparison, FAQ
+- [SKILL.md](https://github.com/ckmirafss/easy-on-the-eyes/blob/main/skills/easy-on-the-eyes/SKILL.md): rules table, modes, report template
+- [Evidence](https://github.com/ckmirafss/easy-on-the-eyes/blob/main/skills/easy-on-the-eyes/references/evidence.md): what is supported, what is convention, what is myth, with sources
+- [Craft](https://github.com/ckmirafss/easy-on-the-eyes/blob/main/skills/easy-on-the-eyes/references/craft.md): studying reference sites and avoiding the generated look
+- [Contrast and color](https://github.com/ckmirafss/easy-on-the-eyes/blob/main/skills/easy-on-the-eyes/references/contrast-and-color.md)
+- [Typography](https://github.com/ckmirafss/easy-on-the-eyes/blob/main/skills/easy-on-the-eyes/references/typography.md)
+- [Motion](https://github.com/ckmirafss/easy-on-the-eyes/blob/main/skills/easy-on-the-eyes/references/motion.md)
+- [Layout and patterns](https://github.com/ckmirafss/easy-on-the-eyes/blob/main/skills/easy-on-the-eyes/references/layout-and-patterns.md)
+- [Theming](https://github.com/ckmirafss/easy-on-the-eyes/blob/main/skills/easy-on-the-eyes/references/theming.md)

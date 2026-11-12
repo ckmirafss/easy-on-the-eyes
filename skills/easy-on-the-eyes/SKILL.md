@@ -1,15 +1,17 @@
 ---
 name: easy-on-the-eyes
-description: Applies and audits visual-comfort rules for websites and web apps so an interface does not add avoidable eye strain. Covers text size, contrast floors and ceilings, light and dark themes, motion, flashing, stripe patterns and layout stability, with every rule graded as research, standard, convention or inference. Use when building or styling UI meant for long reading or daily use, when setting up color tokens, typography or dark mode, or when the user says a page is hard to read, too bright, harsh, glaring, tiring, "hurts my eyes" or should be "easy on the eyes". Also handles "/easy-on-the-eyes audit" and "/easy-on-the-eyes fix". Not for full WCAG compliance audits, brand palette creation or personal eye-health advice.
+description: Makes websites and web apps comfortable to look at and keeps them from looking generic or AI-generated. Applies and audits evidence-graded rules for text size, contrast, light and dark themes, motion, flashing, stripe patterns and layout stability, and studies real reference sites in a browser to extract their fonts, palette, layout and motion before designing. Use when building or styling UI, setting up color tokens, typography or dark mode, when a page is hard to read, too bright, harsh, tiring, "hurts my eyes" or should be "easy on the eyes", when a design looks templated, generic or like "AI slop", or when the user wants design inspiration from real sites. Handles "/easy-on-the-eyes audit", "fix" and "study <url>". Not for full WCAG compliance audits or personal eye-health advice.
 license: MIT
 metadata:
   author: Blackbyrds Digital
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Easy on the Eyes
 
 Most eye strain at a screen comes from things a website cannot touch: blinking, focus distance, uncorrected vision, the room. What a site controls is how much extra visual work it asks for. This skill removes that extra work and says how strong the evidence is for each rule.
+
+It also keeps a comfortable page from looking like a template. It studies real, shipped sites before designing, and it carries a set of craft rules for the choices that make work look generated.
 
 ## The claim you are allowed to make
 
@@ -19,8 +21,9 @@ Say the design "does not add avoidable visual strain". Never write that a design
 
 Read the arguments the skill was invoked with.
 
-- **No argument, or a build task.** Apply the rules while you write or edit UI. Start from `assets/tokens.css` when the project has no color or type tokens yet. When the UI is written, run the script on it and go through "What the script cannot see" before you say it is done.
+- **No argument, or a build task.** For a new page or section, study references first (see "Study before you design"). Then apply the rules while you write or edit UI. Start from `assets/tokens.css` when the project has no color or type tokens yet. When the UI is written, run `audit.mjs` on the source and `inspect.mjs` on the rendered page, and go through "What the script cannot see" before you say it is done.
 - **`audit`** (optionally followed by a path). Run the script, then review what a script cannot see. Report with the template below. Change nothing.
+- **`study`** followed by one or more URLs. Inspect each page and report its design brief: what it does, what is worth borrowing and which comfort rules it breaks. Change nothing.
 - **`fix`** (optionally followed by a path). Run the audit. Fix errors, then warnings. Leave a note alone unless fixing an error or warning depends on it, or your own review shows it is a real problem. Re-run the script and report.
 
 ## Running the script
@@ -35,12 +38,32 @@ node <skill-dir>/scripts/audit.mjs contrast "#1f2328" "#ffffff"          # one p
 node <skill-dir>/scripts/audit.mjs contrast "#8a8f98" "#ffffff" --min 3  # a border or icon
 ```
 
+```bash
+node <skill-dir>/scripts/inspect.mjs https://example.com              # design brief and rendered comfort check
+node <skill-dir>/scripts/inspect.mjs http://localhost:3000 --out shots # also saves light and dark screenshots
+node <skill-dir>/scripts/inspect.mjs dist/index.html --json
+```
+
+- `audit.mjs` reads source files. `inspect.mjs` opens a page in a real browser, so it measures what the reader gets: the contrast of real text on its real background, real characters per line, whether a dark scheme exists and whether motion stops when reduced motion is requested.
+- `inspect.mjs` works on any URL or local HTML file. It needs Playwright in the project (`npm i -D playwright && npx playwright install chromium`). If it is missing and you cannot install it, say the rendered check was not run.
 - A path is required. If the user gave none, use the folder that holds the UI source.
 - Colors can be hex, `rgb()`, `hsl()`, `oklch()`, `white` or `black`.
 - To silence a finding that is intentional, put a comment containing `easy-on-the-eyes-ignore` on that line, or `easy-on-the-eyes-ignore-next-line` on the line before.
 - The script needs Node 18 or later and has no dependencies. If Node is missing, apply the rules by hand and say the script was not run.
 
-The script reports under the rule IDs in the table below. Use those same IDs in your report.
+Both scripts report under the rule IDs in the table below. Use those same IDs in your report.
+
+## Study before you design
+
+Models produce the average of what they have seen, and the average is what people recognize as generated. Looking at specific, shipped work first gives you real decisions to react to.
+
+1. Pick three to five live sites in the same category as what you are building. Use the ones the user names. Otherwise find them with web search, or with any design-reference or screenshot tool connected to the session.
+2. Run `inspect.mjs` on each, with `--out` so you can open the screenshots and look at them.
+3. For each one, note the fonts and type scale, how many colors it uses and where the accent goes, the line length, the section structure, and the one thing that makes it recognizable.
+4. Read the comfort findings for each reference. Admired sites often ship tiny text, weak contrast and heavy motion. Borrow the composition and leave those behind. `references/craft.md` has the table.
+5. Tell the user which sites you studied and what you took from each. Borrow structure and decisions. Never copy a brand's name, logo, wording, images or exact layout.
+
+If you cannot open any reference, say so and design from the rules and `references/craft.md`.
 
 ## Evidence grades
 
@@ -84,6 +107,13 @@ Severity decides the order: errors first, then warnings, then notes. Inside a se
 | `motion-duration` | 100 to 300 ms, 500 ms ceiling, ease-out for entrances. | note | convention | motion |
 | `theme-preferences` | Honor `prefers-contrast`, `forced-colors` and `prefers-reduced-transparency`. | note | convention | theming |
 | `pattern-clutter` | One primary emphasis per view. Few accent colors, sizes and border styles. | note | research | layout-and-patterns |
+| `craft-copy` | Specific copy. Never invent statistics, testimonials, ratings or client logos. | warning | convention | craft |
+| `craft-reference` | Study three to five real sites in the same category before designing. Borrow decisions, never copy. | note | convention | craft |
+| `craft-one-idea` | One distinctive idea per view. Everything else stays quiet. | note | convention | craft |
+| `craft-palette` | Tinted neutrals and one accent. No indigo or purple gradients, no gradient text. | note | convention | craft |
+| `craft-show-product` | Show the real interface, data or code. No row of three identical icon cards, no emoji icons. | note | convention | craft |
+| `craft-layout` | Do not center everything. Uneven grid splits and varied section structure. | note | convention | craft |
+| `craft-restraint` | Flat surfaces and hairlines. Few shadows, one radius scale, no stacked blur and glow. | note | convention | craft |
 
 Reference files hold the reasoning, sources and before/after code. Read each one that covers a rule you are applying or reporting. A fix across a whole page usually needs three or four of them.
 
@@ -92,6 +122,7 @@ Reference files hold the reasoning, sources and before/after code. Read each one
 - `references/motion.md`: animation, transitions, video, scroll effects, loaders.
 - `references/layout-and-patterns.md`: tables, grids, stripes, density, section backgrounds, images, layout shift.
 - `references/theming.md`: light and dark themes, a theme toggle, focus styles, user-preference media queries, Tailwind and shadcn/ui.
+- `references/craft.md`: designing a new page or section, a result that looks templated or generated, what to borrow from a reference site and what to leave.
 - `references/evidence.md`: when the user asks why, questions a rule, or asks about blue light, dark mode, dyslexia fonts or APCA.
 
 ## Defaults to write without being asked
@@ -123,7 +154,7 @@ Tailwind and shadcn/ui ship pure white with near-black (about 19.8:1) and `bg-wh
 
 ## What the script cannot see
 
-After running it, check these by reading the code or the rendered page. If you cannot check one, list it under "Not verified" and say why.
+`inspect.mjs` covers the first, third and fifth items below when you can run it on the rendered page. Check the rest, and all of them when it could not run, by reading the code or the page. If you cannot check one, list it under "Not verified" and say why.
 
 - Contrast of each real text and background pair, including text over images and gradients. Measure pairs with the `contrast` command
 - Whether small text is body copy or a short label
@@ -173,4 +204,6 @@ In fix mode, the Errors, Warnings and Notes sections list only what is still ope
 - A loading spinner that leaves the DOM when loading ends is not an endless-animation problem.
 - An animated GIF is a script note because the script cannot tell whether it animates. If it loops beside content for more than 5 seconds, report it as a `motion-autoplay` error.
 - APCA is useful as a second opinion on dark themes, but it is not part of WCAG and its reference code has a restrictive license. Use the APCA readout in Chrome DevTools. Do not copy its source into a project.
-- This skill works alongside a design skill and a WCAG audit. It does not replace either.
+- The craft rules are taste, graded `convention`. When one disagrees with a comfort rule, the comfort rule wins. Do not report a craft note as if it were a defect.
+- A reference site is evidence of what someone shipped, not proof that it is good. Check it against the comfort rules like any other page.
+- This skill works alongside a WCAG audit. It does not replace one.

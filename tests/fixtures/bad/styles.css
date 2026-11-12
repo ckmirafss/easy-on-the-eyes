@@ -21,3 +21,4 @@ button:focus { outline: none; }
 tr:nth-child(even) { background: #ccc; }
 a:focus { outline-style: none; }
 .pct { line-height: 100%; }
+.title { background: linear-gradient(90deg, #6366f1, #ec4899); -webkit-background-clip: text; }

@@ -9,7 +9,7 @@
     {
       "name": "easy-on-the-eyes",
       "source": "./",
-      "description": "Visual-comfort rules and an audit script for websites and web apps, with every rule graded by evidence."
+      "description": "Makes websites comfortable to look at and keeps them from looking generic: evidence-graded comfort rules, a static audit, and a browser inspector that studies real reference sites."
     }
   ]
 }

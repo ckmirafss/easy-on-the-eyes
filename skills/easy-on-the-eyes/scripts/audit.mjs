@@ -10,7 +10,7 @@
 import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
 import { join, relative, extname, resolve } from "node:path";
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 const SKIP_DIRS = new Set([
   "node_modules", "dist", "build", "out", "coverage", "vendor", "target", "__pycache__",
 ]);
@@ -246,6 +246,16 @@ const CHECKS = {
     why: "High-contrast stripes with a period of about 7 to 27 px are the most uncomfortable static pattern known. Treat this as a warning if the pattern covers a large area at strong contrast.",
     fix: "Lower the contrast of the pattern, widen it, or keep it to small areas.",
   },
+  gradientText: {
+    rule: "craft-palette", grade: "convention",
+    why: "Gradient text reads as a template, and its contrast cannot be measured because it changes along the word.",
+    fix: "Use one ink color and get emphasis from size and weight.",
+  },
+  stockGradient: {
+    rule: "craft-palette", grade: "convention",
+    why: "Indigo-to-purple and purple-to-pink gradients are the most recognizable generated look.",
+    fix: "Use a flat surface, or a gradient built from the project's own palette.",
+  },
   zebra: {
     rule: "pattern-stripes", grade: "inference",
     why: "Zebra rows are a stripe pattern. They are fine when the tint is faint and there are no row borders as well.",
@@ -352,6 +362,10 @@ const LINE_CHECKS = [
       const period = stripePeriod(m);
       return period === null ? "Check the stripe period and contrast by eye." : `Stripe period of about ${period}px. Check its contrast and area by eye.`;
     } },
+  { check: "gradientText", severity: "note",
+    re: /(?:-webkit-)?background-clip:\s*text|\bbg-clip-text\b/ },
+  { check: "stockGradient", severity: "note", markupOnly: true,
+    re: /\bfrom-(?:indigo|purple|violet|fuchsia)-\d{3}\b[^"'`]*\bto-(?:pink|purple|violet|fuchsia|blue|indigo)-\d{3}\b/ },
   { check: "zebra", severity: "note",
     re: /:nth-(?:child|of-type)\(\s*(?:even|odd|2n(?:\s*\+\s*1)?)\s*\)[^{]*\{[^}]*background/ },
 ];

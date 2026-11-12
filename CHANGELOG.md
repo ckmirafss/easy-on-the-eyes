@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 (2026-11-13)
+
+- `scripts/inspect.mjs`: opens any URL or local page in a browser and reports a design brief (fonts, type scale, palette, line length, layout, surfaces, motion) plus a comfort check on the rendered page
+- New `study` mode for learning from reference sites before designing
+- Seven craft rules and `references/craft.md` for keeping work from looking generated
+- `audit.mjs` now reports gradient text and stock purple gradients
+
 ## 1.0.0 (2026-11-13)
 
 First release.
