@@ -8,7 +8,7 @@ An agent skill that makes websites comfortable to look at for hours. Literally.
 npx skills add ckmirafss/easy-on-the-eyes
 ```
 
-![The same report page before and after: thin 13px white text on pure black with a striped table, next to readable off-white text on dark gray](docs/demo.png)
+![The same report page before and after: thin 13px white text on pure black with a striped table, next to readable off-white text on dark gray](docs/demo-report.png)
 
 ## What it does
 
@@ -80,6 +80,22 @@ skills/easy-on-the-eyes/
   scripts/audit.mjs                static audit and contrast checker
   assets/tokens.css                starter tokens for light, dark and dim themes
 ```
+
+## Before and after
+
+Each pair is the same content. The left side breaks rules the skill checks, and the right side is what it steers toward. The figures are WCAG contrast ratios measured with the skill's own script.
+
+**Long-form article.** 12px justified text running the full width, a 2.32:1 byline and a red-on-yellow callout, against 19px text at about 70 characters per line.
+
+![An article about steeping green tea, before and after](docs/demo-article.png)
+
+**Data table.** Black grid lines on heavy zebra rows, with status shown by color alone (the green is 1.21:1 on its gray row and the yellow is 1.07:1 on white), against hairlines and status labels that pair a shape with text.
+
+![An orders table, before and after](docs/demo-table.png)
+
+**Form in dark mode.** Field borders at 1.46:1, an error that only says "invalid" in pure red, and no visible focus, against 3.87:1 borders, a clear error message and an 8.14:1 focus ring.
+
+![An account settings form in dark mode, before and after](docs/demo-form.png)
 
 ## Works with
 
