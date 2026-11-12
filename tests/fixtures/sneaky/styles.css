@@ -1,0 +1,5 @@
+/* TODO: handle prefers-reduced-motion and color-scheme later */
+.card { transition: transform 300ms; }
+@media (prefers-color-scheme: dark) {
+  body { background: #111; color: #eee; }
+}

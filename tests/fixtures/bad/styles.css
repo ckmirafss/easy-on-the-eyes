@@ -1,0 +1,23 @@
+body {
+  background: #fff;
+  color: #000;
+  font-size: 13px;
+  line-height: 1.05;
+  font-weight: 300;
+  text-align: justify;
+}
+h1 { font-size: 6vw; line-height: 1.2; }
+.caption { font-size: 14px; }
+.hero { background-attachment: fixed; }
+.badge { animation: pulse 1s infinite; }
+.card { transition: transform 300ms; }
+@keyframes pulse { from { opacity: 1; } to { opacity: 0.4; } }
+button:focus { outline: none; }
+.glass { backdrop-filter: blur(12px); }
+.stripes { background: repeating-linear-gradient(90deg, #111 0 6px, #eee 6px 12px); }
+.tiny { font-size: 0.6rem; }
+.fluid { font-size: calc(2vw + 1vh); }
+.panel { background: hsl(0 0% 100%); }
+tr:nth-child(even) { background: #ccc; }
+a:focus { outline-style: none; }
+.pct { line-height: 100%; }

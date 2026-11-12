@@ -1,0 +1,30 @@
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(oklch(0.985 0.002 90), oklch(0.18 0.01 255));
+  --text: light-dark(oklch(0.24 0.01 255), oklch(0.93 0.005 255));
+  --shadow: #00000033;
+  --paper: #fffff8;
+}
+html { background-color: var(--bg); color: var(--text); }
+body { font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); line-height: 1.6; font-weight: 400; }
+h1 { font-size: 160px; line-height: 1.4; }
+.big { font-size: 16px; line-height: 14; }
+p { max-inline-size: 65ch; text-align: start; }
+:focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+.reset { transition: none; outline: 0px solid transparent; }
+@media (prefers-reduced-motion: no-preference) {
+  .card { transition: transform 200ms ease-out; }
+}
+@media (prefers-contrast: more) {
+  :root { --bg: #fff; --text: #000; }
+}
+@media (forced-colors: active) {
+  .btn { border: 2px solid ButtonText; }
+}
+.overlay { background: rgb(0 0 0 / 40%); } /* easy-on-the-eyes-ignore */
+h2 { line-height: 1.2; }
+.card { border: 1px solid #000; box-shadow: 0 0 0 1px rgb(255 255 255 / 50%); }
+.lead { font-size: 1.125rem; line-height: 150%; }
+.fluid { font-size: calc(1rem + 2vw); }
+.wide-stripes { background: repeating-linear-gradient(90deg, oklch(0.96 0 0) 0 40px, oklch(0.93 0 0) 40px 80px); }
+.thin-border { outline: 0.5px solid currentColor; outline-width: 0.5px; }

@@ -1,0 +1,20 @@
+{
+  "name": "easy-on-the-eyes",
+  "description": "Visual-comfort rules and an audit script for websites and web apps, with every rule graded by evidence.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Blackbyrds Digital",
+    "url": "https://blackbyrds.digital"
+  },
+  "homepage": "https://github.com/ckmirafss/easy-on-the-eyes",
+  "repository": "https://github.com/ckmirafss/easy-on-the-eyes",
+  "license": "MIT",
+  "keywords": [
+    "design",
+    "accessibility",
+    "readability",
+    "dark-mode",
+    "contrast",
+    "typography"
+  ]
+}
