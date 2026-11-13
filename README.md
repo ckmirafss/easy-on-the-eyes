@@ -31,7 +31,7 @@ Once installed, the skill applies itself when you build or style UI. You can als
 | `/easy-on-the-eyes fix` | Fixes errors first, then warnings, and reports what changed |
 | `/easy-on-the-eyes study <url>` | Reports a site's design brief and which comfort rules it breaks |
 
-Both scripts also run on their own. They need Node 18 or later. The inspector also needs Playwright.
+Both scripts also run on their own. They need Node 22 or later, and the inspector also needs Playwright.
 
 ```bash
 node skills/easy-on-the-eyes/scripts/audit.mjs ./src
@@ -186,4 +186,6 @@ If a rule is wrong or I missed a study, open an issue with the source and I will
 
 ## License
 
-MIT. Built by [Blackbyrds Digital](https://blackbyrds.digital). Last updated November 2026.
+MIT. Built by [Blackbyrds Digital](https://blackbyrds.digital).
+
+Last updated 13 November 2026. Browser support, framework versions and standards status were checked against live data on that date, and a weekly job in this repo flags anything that has changed since.

@@ -4,7 +4,7 @@ description: Makes websites and web apps comfortable to look at and keeps them f
 license: MIT
 metadata:
   author: Blackbyrds Digital
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Easy on the Eyes
@@ -49,7 +49,7 @@ node <skill-dir>/scripts/inspect.mjs dist/index.html --json
 - A path is required. If the user gave none, use the folder that holds the UI source.
 - Colors can be hex, `rgb()`, `hsl()`, `oklch()`, `white` or `black`.
 - To silence a finding that is intentional, put a comment containing `easy-on-the-eyes-ignore` on that line, or `easy-on-the-eyes-ignore-next-line` on the line before.
-- The script needs Node 18 or later and has no dependencies. If Node is missing, apply the rules by hand and say the script was not run.
+- `audit.mjs` needs Node 22 or later and has no dependencies. If Node is missing, apply the rules by hand and say the script was not run.
 
 Both scripts report under the rule IDs in the table below. Use those same IDs in your report.
 
@@ -203,6 +203,7 @@ In fix mode, the Errors, Warnings and Notes sections list only what is still ope
 - Small sizes and tight leading are fine for headings and short labels. The script reports those as notes, or skips them, for that reason.
 - A loading spinner that leaves the DOM when loading ends is not an endless-animation problem.
 - An animated GIF is a script note because the script cannot tell whether it animates. If it loops beside content for more than 5 seconds, report it as a `motion-autoplay` error.
+- The facts in this skill were checked in November 2026: browser support, framework versions, WCAG status. If today is well past that, check current browser support and framework docs before relying on the support table in `references/theming.md` or on a framework snippet, and tell the user what changed.
 - APCA is useful as a second opinion on dark themes, but it is not part of WCAG and its reference code has a restrictive license. Use the APCA readout in Chrome DevTools. Do not copy its source into a project.
 - The craft rules are taste, graded `convention`. When one disagrees with a comfort rule, the comfort rule wins. Do not report a craft note as if it were a defect.
 - A reference site is evidence of what someone shipped, not proof that it is good. Check it against the comfort rules like any other page.

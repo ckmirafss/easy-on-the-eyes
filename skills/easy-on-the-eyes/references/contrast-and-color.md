@@ -20,7 +20,7 @@ Every text and background pair needs at least 4.5:1. Large text (24px, or 18.66p
 
 Focus rings, input borders and icons count as interface parts. A hairline divider is decoration and is exempt, but the edge of a text field is not.
 
-This is the legal floor. The US ADA Title II rule names WCAG 2.1 AA, and the EU standard EN 301 549 follows WCAG 2.2. The contrast criteria are the same in both versions.
+This is the legal floor, as of November 2026. The US ADA Title II rule names WCAG 2.1 AA, with compliance dates of 26 April 2027 for larger public entities and 26 April 2028 for smaller ones. In the EU, EN 301 549 V4.1.1 was published in September 2026 and aligns with WCAG 2.2. WCAG 3 is still a working draft and has not chosen a contrast method. The contrast criteria are the same in WCAG 2.1 and 2.2.
 
 ```css
 /* Incorrect: 3.27:1 on white */

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Easy on the Eyes: static comfort audit. No dependencies. Node 18+.
+// Easy on the Eyes: static comfort audit. No dependencies. Node 22+.
 // easy-on-the-eyes-ignore-file (this file contains the patterns it searches for)
 //
 //   node audit.mjs <path> [--json] [--strict]
@@ -10,7 +10,7 @@
 import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
 import { join, relative, extname, resolve } from "node:path";
 
-const VERSION = "1.1.0";
+const VERSION = "1.1.1";
 const SKIP_DIRS = new Set([
   "node_modules", "dist", "build", "out", "coverage", "vendor", "target", "__pycache__",
 ]);

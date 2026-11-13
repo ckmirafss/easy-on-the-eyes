@@ -145,15 +145,17 @@ Sources: [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
 
 ## Browser support
 
-As of November 2026.
+Checked on 13 November 2026 against the web-features dataset (3.46.0) and MDN browser-compat-data (8.1.9). Current stable browsers on that date: Chrome 157, Firefox 160, Safari 27.2.
 
 | Status | Features | How to use |
 |---|---|---|
-| Works everywhere | `prefers-color-scheme`, `prefers-reduced-motion`, `prefers-contrast`, `forced-colors`, `color-scheme`, `light-dark()`, `oklch()`, `color-mix()`, `:focus-visible`, `clamp()`, `size-adjust` | Use directly |
-| Recent in all engines | `text-wrap: balance`, `scrollbar-gutter`, relative color syntax, `contrast-color()`, scroll-driven animations | Use with a fallback or `@supports` |
-| Partial | `text-wrap: pretty` (no Firefox), `dynamic-range-limit` (no Firefox), `prefers-reduced-transparency` (Chromium only), `ascent-override` and related descriptors (no Safari) | Enhancement only |
+| In every browser for 30 months or more | `prefers-color-scheme`, `prefers-reduced-motion`, `prefers-contrast`, `forced-colors`, `color-scheme`, `oklch()`, `color-mix()`, `:focus-visible`, `clamp()`, `hyphens`, `@font-face size-adjust` | Use directly |
+| In every current browser, newer | `light-dark()` (May 2024), `text-wrap: balance` (May 2024), relative color syntax and `backdrop-filter` unprefixed (September 2024), `scrollbar-gutter` (December 2024), `content-visibility` (September 2025), same-document view transitions (October 2025), `contrast-color()` (April 2026), scroll-driven animations (October 2026) | Fine for most audiences. Add a fallback or `@supports` if old browsers matter |
+| Not in every browser | `text-wrap: pretty` (no Firefox), `dynamic-range-limit` (no Firefox), `prefers-reduced-transparency` (Chrome and Edge only), `ascent-override` and related descriptors (no Safari release), cross-document view transitions (no Firefox), `accent-color` | Enhancement only. The page must work without it |
 
 `contrast-color()` returns only black or white, which works against the comfort goals for body text. Use it for small badges at most.
+
+Support changes every few weeks. If this date is more than a few months old, check the feature on MDN or caniuse before relying on the bottom two rows.
 
 Sources: [web-features data](https://unpkg.com/web-features/data.json), [MDN browser-compat-data](https://unpkg.com/@mdn/browser-compat-data/data.json)
 
@@ -183,5 +185,7 @@ Then write `bg-background text-foreground` and avoid `bg-white`, `text-black`, `
   {children}
 </ThemeProvider>
 ```
+
+The snippets in this section were compiled or checked against Tailwind CSS 4.3.5, Next.js 16.4.6, React 19.3.1, Motion 14.13.0 and next-themes 0.4.6, the current releases on 13 November 2026. Class names and config change between major versions, so check the project's installed version first.
 
 Sources: [Tailwind theme](https://tailwindcss.com/docs/theme), [shadcn/ui theming](https://ui.shadcn.com/docs/theming), [next-themes](https://github.com/pacocoursey/next-themes)

@@ -1,0 +1,25 @@
+{
+  "checkedOn": "2026-11-13",
+  "note": "What the skill's docs assume. tests/freshness.mjs compares this with live data.",
+  "features": {
+    "light-dark": { "baseline": "low", "firefox": "120", "safari": "17.5" },
+    "scroll-driven-animations": { "baseline": "low", "firefox": "159", "safari": "26" },
+    "contrast-color": { "baseline": "low", "firefox": "146", "safari": "26" },
+    "text-wrap-balance": { "baseline": "low", "firefox": "121", "safari": "17.5" },
+    "text-wrap-pretty": { "baseline": false, "firefox": null, "safari": "26" },
+    "prefers-reduced-transparency": { "baseline": false, "firefox": null, "safari": null },
+    "font-metric-overrides": { "baseline": false, "firefox": "89", "safari": null },
+    "cross-document-view-transitions": { "baseline": false, "firefox": null, "safari": "18.2" },
+    "accent-color": { "baseline": false, "firefox": "92", "safari": "26.2" },
+    "relative-color": { "baseline": "low", "firefox": "128", "safari": "18" },
+    "scrollbar-gutter": { "baseline": "low", "firefox": "97", "safari": "18.2" },
+    "content-visibility": { "baseline": "low", "firefox": "130", "safari": "26" },
+    "view-transitions": { "baseline": "low", "firefox": "144", "safari": "18" },
+    "backdrop-filter": { "baseline": "low", "firefox": "103", "safari": "18" },
+    "oklab": { "baseline": "high", "firefox": "113", "safari": "15.4" },
+    "color-mix": { "baseline": "high", "firefox": "113", "safari": "16.2" },
+    "prefers-contrast": { "baseline": "high", "firefox": "101", "safari": "14.1" },
+    "forced-colors": { "baseline": "high", "firefox": "89", "safari": "16" }
+  },
+  "packages": { "tailwindcss": 4, "next": 16, "react": 19, "motion": 14, "next-themes": 0, "playwright": 1 }
+}

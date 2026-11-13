@@ -11,7 +11,7 @@
 //      text, real line length, dark scheme support and reduced-motion behavior.
 //      Use it on your own page to cover what the static audit cannot see.
 //
-// Needs Playwright (npm i -D playwright && npx playwright install chromium).
+// Needs Node 22+ and Playwright (npm i -D playwright && npx playwright install chromium).
 // Exit codes: 0 no errors, 1 comfort errors found, 2 usage or setup problem.
 
 import { createRequire } from "node:module";
@@ -19,7 +19,7 @@ import { existsSync, mkdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
-const VERSION = "1.1.0";
+const VERSION = "1.1.1";
 
 // ---------- color maths (same as audit.mjs) ----------
 const toLinear = (v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
